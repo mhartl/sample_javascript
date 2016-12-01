@@ -208,7 +208,7 @@ p ~ p {
   background-size: cover;
   position: relative;
   height: 100vh;
-} 
+}
 .full-hero:after {
   bottom: 2vh;
   border: 10px solid #000;
@@ -263,14 +263,14 @@ p ~ p {
   list-style: none;
   padding: 0;
   text-align: center;
-} 
+}
 .social-list > li {
   display: inline-block;
   margin: 0 0.5em;
 }
 .bio-wrapper {
   overflow: hidden;
-} 
+}
 .bio-wrapper:after {
   visibility: hidden;
   display: block;
@@ -378,7 +378,7 @@ p ~ p {
 .photo-desc {
   display: none;
 }
-.gallery-thumbs .current img {
+.gallery-thumbs .current {
   border-color: #ed6e2f;
   opacity: 1;
 }
@@ -439,7 +439,7 @@ p ~ p {
   height: 2.5em;
   vertical-align: middle;
 }
-.post-header img, 
+.post-header img,
 .post-header .social-link {
   margin-right: 0.5em;
 }
@@ -473,8 +473,8 @@ p ~ p {
 .post {
   margin: 4em auto 10em;
 }
-.post .post-header, 
-.post .post-content, 
+.post .post-header,
+.post .post-content,
 .post-footer {
   margin: auto;
   max-width: 40em;
@@ -503,32 +503,33 @@ p ~ p {
   font-size: 0.8em;
 }
 
-
-
-
-
-
 @media (max-width: 800px) {
-html {
-  box-shadow: none;
-  padding: 0;
+  html {
+    box-shadow: none;
+    padding: 0;
+  }
+  .header {
+    position: relative;
+    height: auto;
+  }
+  .header-logo {
+    height: auto;
+    left: 0;
+    width: auto;
+  }
+  .header-nav {
+
+  }
+  .header-logo img {
+    width: 5vw;
+  }
+  .post-aside {
+    display: none;
+  }
 }
-.header {
-  position: relative;
-  height: auto;
-}
-.header-logo {
-  height: auto;
+
+.gallery-photo img + img {
   left: 0;
-  width: auto;
-}
-.header-nav {
-  
-}
-.header-logo img {
-  width: 5vw;
-}
-.post-aside {
-  display: none;
-}
+  position: absolute;
+  top: 0;
 }

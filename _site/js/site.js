@@ -1,10 +1,11 @@
 $(document).ready(function() {
 
-  $('#gallery-thumbs a').click(function(event) {
+  $('#gallery-thumbs div.gallery-item').click(function(event) {
     //don't follow link
-    event.preventDefault();
+    // event.preventDefault();
     //get path to new image
-    var imgPath = $(this).attr('href');
+    var image = $(this).find('img')
+    var imgPath = image.attr('src');
     //get reference to old image
     var oldImage = $('#gallery-photo img');
 
@@ -20,9 +21,9 @@ $(document).ready(function() {
     $('#gallery-info h3').html($(this).find('.photo-title').html() || 'No Title');
     $('#gallery-info p').html($(this).find('.photo-desc').html() || 'No Description');
 
-    if(!$(this).hasClass('current')) {
+    if(!image.hasClass('current')) {
       $('.current').removeClass('current')
-      $(this).addClass('current');
+      image.addClass('current');
     }
 
      //fade out old image and remove from DOM
@@ -33,7 +34,7 @@ $(document).ready(function() {
      newImage.fadeIn(fade_time);
   }); // end click
 
-  $('#gallery-thumbs a:first').click();
+  $('#gallery-thumbs div.gallery-item:first').click();
 }); // end ready
 
 
