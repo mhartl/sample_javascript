@@ -2,14 +2,37 @@
 layout: default
 ---
 
-<div class="page col-three">
-  <div class="col col-nav">
-    I'm the nav
-  </div>
-  <div class="col col-content">
-    I'm the 3col page!
-  </div>
-  <div class="col col-aside">
-    I'm over on the right
-  </div>
-</div>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Gallery</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/main.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function() {
+        $('#gallery-thumbs a').click(function(event) {
+          event.preventDefault();
+          $(this).addClass('current');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="gallery-thumbs" id="gallery-thumbs" style="width: 500px;">
+      <a href="../images/large/slide1.jpg">
+        <div class="photo-title">Golf Balls</div>
+        <img src="../images/small/slide1.jpg" alt="golf balls">
+      </a>
+      <a href="../images/large/slide2.jpg">
+        <div class="photo-title">Rock Wall</div>
+        <img src="../images/small/slide2.jpg" alt="rock wall">
+      </a>
+    </div>
+  </body>
+</html>
+

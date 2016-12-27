@@ -17,8 +17,11 @@ $(document).ready(function() {
     //fade in new image
     var fade_time = 1000;
 
-    $('#gallery-info h3').html($(this).find('.photo-title').html() || 'No Title');
-    $('#gallery-info p').html($(this).find('.photo-desc').html() || 'No Description');
+    title       = $(this).find('.photo-title').html();
+    description = $(this).find('.photo-desc' ).html();
+
+    $('#gallery-info h3').html(title       || 'No Title');
+    $('#gallery-info p' ).html(description || 'No Description');
 
     if(!$(this).hasClass('current')) {
       $('.current').removeClass('current')
@@ -26,7 +29,7 @@ $(document).ready(function() {
     }
 
      //fade out old image and remove from DOM
-     oldImage.fadeOut(fade_time, function(){
+     oldImage.fadeOut(fade_time, function() {
        $(this).remove();
       });
 
