@@ -35,19 +35,3 @@ $(document).ready(function() {
 
   $('#gallery-thumbs a:first').click();
 }); // end ready
-
-
-  // $('#gallery img').each(function(i) {
-  //   var imgFile = $(this).attr('src');
-  //   var preloadImage = new Image();
-  //   preloadImage.src = imgFile.replace('.jpg', '_h.jpg');
-
-  //   $(this).hover(
-  //     function() {
-  //       $(this).attr('src', preloadImage.src);
-  //     },
-  //     function () {
-  //       var currentSource = $(this).attr('src');
-  //       $(this).attr('src', imgFile);
-  //   }); // end hover
-  // }); // end each
