@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-
   gallery = document.getElementById('gallery-thumbs');
   gallery.addEventListener('click', function(event) {
-
     var clicked_image = event.target;
     var image_src     = clicked_image.dataset.largeVersion;
 
@@ -28,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var gallery_info = document.getElementById('gallery-info');
     gallery_info.querySelector('h3').innerHTML = title.innerHTML;
     gallery_info.querySelector('p').innerHTML  = desc.innerHTML;
-
-
   });
   document.querySelector('div.gallery-element > img').click();
 });
