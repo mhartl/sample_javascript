@@ -378,7 +378,7 @@ p ~ p {
 .photo-desc {
   display: none;
 }
-.gallery-thumbs .current {
+.gallery-thumbs img.current {
   border-color: #ed6e2f;
   opacity: 1;
 }

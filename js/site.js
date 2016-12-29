@@ -1,54 +1,66 @@
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
 
-  $('#gallery-thumbs div.gallery-item').click(function(event) {
-    //don't follow link
-    // event.preventDefault();
-    //get path to new image
-    var image = $(this).find('img')
-    var imgPath = image.attr('src');
-    //get reference to old image
-    var oldImage = $('#gallery-photo img');
+  gallery = document.getElementById('gallery-thumbs');
+  gallery.addEventListener('click', function(event) {
 
-    //create HTML for new image
-    var newImage = $('<img src="' + imgPath +'">');
-    //make new image invisible
-    newImage.hide();
-    //add to the #photo div
-    $('#gallery-photo').prepend(newImage);
-    //fade in new image
-    var fade_time = 1000;
+    var clicked_image = event.target;
+    var image_src     = clicked_image.dataset.largeVersion;
 
-    $('#gallery-info h3').html($(this).find('.photo-title').html() || 'No Title');
-    $('#gallery-info p').html($(this).find('.photo-desc').html() || 'No Description');
-
-    if(!image.hasClass('current')) {
-      $('.current').removeClass('current')
-      image.addClass('current');
+    var main_div  = document.getElementById('gallery-photo');
+    var old_image = document.getElementById('main-gallery-image');
+    if (old_image) {
+      main_div.removeChild(old_image);
     }
 
-     //fade out old image and remove from DOM
-     oldImage.fadeOut(fade_time, function(){
-       $(this).remove();
-      });
+    var new_image = document.createElement('img');
+    new_image.id  = 'main-gallery-image'
+    new_image.src = image_src;
+    main_div.appendChild(new_image);
 
-     newImage.fadeIn(fade_time);
-  }); // end click
+    var all_images = gallery.querySelectorAll('img');
+    for (var i = 0; i < all_images.length; i++) {
+      all_images[i].className = "";
+    }
+    clicked_image.className = "current"
+  });
 
-  $('#gallery-thumbs div.gallery-item:first').click();
-}); // end ready
+  document.querySelector('div.gallery-thumbs > img').click();
+});
 
+// $(document).ready(function() {
 
-  // $('#gallery img').each(function(i) {
-  //   var imgFile = $(this).attr('src');
-  //   var preloadImage = new Image();
-  //   preloadImage.src = imgFile.replace('.jpg', '_h.jpg');
+//   $('#gallery-thumbs a').click(function(event) {
+//     //don't follow link
+//     event.preventDefault();
+//     //get path to new image
+//     var imgPath = $(this).attr('href');
+//     //get reference to old image
+//     var oldImage = $('#gallery-photo img');
 
-  //   $(this).hover(
-  //     function() {
-  //       $(this).attr('src', preloadImage.src);
-  //     },
-  //     function () {
-  //       var currentSource = $(this).attr('src');
-  //       $(this).attr('src', imgFile);
-  //   }); // end hover
-  // }); // end each
+//     //create HTML for new image
+//     var newImage = $('<img src="' + imgPath +'">');
+//     //make new image invisible
+//     newImage.hide();
+//     //add to the #photo div
+//     $('#gallery-photo').prepend(newImage);
+//     //fade in new image
+//     var fade_time = 1000;
+
+//     $('#gallery-info h3').html($(this).find('.photo-title').html() || 'No Title');
+//     $('#gallery-info p').html($(this).find('.photo-desc').html() || 'No Description');
+
+//     if(!$(this).hasClass('current')) {
+//       $('.current').removeClass('current')
+//       $(this).addClass('current');
+//     }
+
+//      //fade out old image and remove from DOM
+//      oldImage.fadeOut(fade_time, function(){
+//        $(this).remove();
+//       });
+
+//      newImage.fadeIn(fade_time);
+//   }); // end click
+
+//   $('#gallery-thumbs a:first').click();
+// }); // end ready
