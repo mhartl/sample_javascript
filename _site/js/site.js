@@ -22,10 +22,18 @@ document.addEventListener("DOMContentLoaded", function() {
       all_images[i].className = "";
     }
     clicked_image.className = "current";
-  });
 
-  document.querySelector('div.gallery-thumbs > img').click();
+    var title = clicked_image.parentElement.querySelector('.photo-title');
+    var desc  = clicked_image.parentElement.querySelector('.photo-desc');
+    var gallery_info = document.getElementById('gallery-info');
+    gallery_info.querySelector('h3').innerHTML = title.innerHTML;
+    gallery_info.querySelector('p').innerHTML  = desc.innerHTML;
+
+
+  });
+  document.querySelector('div.gallery-element > img').click();
 });
+
 
 // $(document).ready(function() {
 
