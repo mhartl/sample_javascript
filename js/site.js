@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     var new_image = document.createElement('img');
-    new_image.id  = 'main-gallery-image'
+    new_image.id  = 'main-gallery-image';
     new_image.src = image_src;
     main_div.appendChild(new_image);
 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 0; i < all_images.length; i++) {
       all_images[i].className = "";
     }
-    clicked_image.className = "current"
+    clicked_image.className = "current";
   });
 
   document.querySelector('div.gallery-thumbs > img').click();
