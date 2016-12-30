@@ -1,32 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
-  gallery = document.getElementById('gallery-thumbs');
-  gallery.addEventListener('click', function(event) {
-    var clicked_image = event.target;
-    var image_src     = clicked_image.dataset.largeVersion;
+  var all_images = document.querySelectorAll('img');
+  for (i = 0; i < all_images.length; i++) {
+    all_images[i].addEventListener('click', function(event) {
+      var clicked_image = event.target;
+      var image_src     = clicked_image.dataset.largeVersion;
 
-    var main_div  = document.getElementById('gallery-photo');
-    var old_image = document.getElementById('main-gallery-image');
-    if (old_image) {
-      main_div.removeChild(old_image);
-    }
+      var main_div  = document.getElementById('gallery-photo');
+      var old_image = document.getElementById('main-gallery-image');
+      if (old_image) {
+        main_div.removeChild(old_image);
+      }
 
-    var new_image = document.createElement('img');
-    new_image.id  = 'main-gallery-image';
-    new_image.src = image_src;
-    main_div.appendChild(new_image);
+      var new_image = document.createElement('img');
+      new_image.id  = 'main-gallery-image';
+      new_image.src = image_src;
+      main_div.appendChild(new_image);
 
-    var all_images = gallery.querySelectorAll('img');
-    for (var i = 0; i < all_images.length; i++) {
-      all_images[i].className = "";
-    }
-    clicked_image.className = "current";
+      for (var j = 0; j < all_images.length; j++) {
+        all_images[j].className = "";
+      }
+      clicked_image.className = "current";
 
-    var title = clicked_image.parentElement.querySelector('.photo-title');
-    var desc  = clicked_image.parentElement.querySelector('.photo-desc');
-    var gallery_info = document.getElementById('gallery-info');
-    gallery_info.querySelector('h3').innerHTML = title.innerHTML;
-    gallery_info.querySelector('p').innerHTML  = desc.innerHTML;
-  });
+      var title = clicked_image.parentElement.querySelector('.photo-title');
+      var desc  = clicked_image.parentElement.querySelector('.photo-desc');
+      var gallery_info = document.getElementById('gallery-info');
+      gallery_info.querySelector('h3').innerHTML = title.innerHTML;
+      gallery_info.querySelector('p').innerHTML = desc.innerHTML;
+    });
+  }
   document.querySelector('div.gallery-element > img').click();
 });
 
