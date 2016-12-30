@@ -1,41 +1,58 @@
-document.addEventListener("DOMContentLoaded", function() {
-  var all_images = document.querySelectorAll('img');
-  for (i = 0; i < all_images.length; i++) {
-    all_images[i].addEventListener('click', function(event) {
-      var image_src     = this.dataset.largeVersion;
+// document.addEventListener("DOMContentLoaded", function() {
+//   var all_images = document.querySelectorAll('img');
+//   for (i = 0; i < all_images.length; i++) {
+//     all_images[i].addEventListener('click', function(event) {
+//       var image_src     = this.dataset.largeVersion;
 
-      var main_div  = document.getElementById('gallery-photo');
-      var old_image = document.getElementById('main-gallery-image');
-      if (old_image) {
-        main_div.removeChild(old_image);
-      }
+//       var main_div  = document.getElementById('gallery-photo');
+//       var old_image = document.getElementById('main-gallery-image');
+//       if (old_image) {
+//         main_div.removeChild(old_image);
+//       }
 
-      var new_image = document.createElement('img');
-      new_image.id  = 'main-gallery-image';
-      new_image.src = image_src;
-      main_div.appendChild(new_image);
+//       var new_image = document.createElement('img');
+//       new_image.id  = 'main-gallery-image';
+//       new_image.src = image_src;
+//       main_div.appendChild(new_image);
 
-      for (var j = 0; j < all_images.length; j++) {
-        all_images[j].className = "";
-      }
-      this.className = "current";
+//       for (var j = 0; j < all_images.length; j++) {
+//         all_images[j].className = "";
+//       }
+//       this.className = "current";
 
-      var title = this.parentElement.querySelector('.photo-title');
-      var desc  = this.parentElement.querySelector('.photo-desc');
-      var gallery_info = document.getElementById('gallery-info');
-      gallery_info.querySelector('h3').innerHTML = title.innerHTML;
-      gallery_info.querySelector('p').innerHTML = desc.innerHTML;
+//       var title = this.parentElement.querySelector('.photo-title');
+//       var desc  = this.parentElement.querySelector('.photo-desc');
+//       var gallery_info = document.getElementById('gallery-info');
+//       gallery_info.querySelector('h3').innerHTML = title.innerHTML;
+//       gallery_info.querySelector('p').innerHTML = desc.innerHTML;
+//     });
+//   }
+//   document.querySelector('div.gallery-element > img').click();
+// });
+
+
+$(document).ready(function() {
+  $('#gallery-thumbs div.gallery-element').click(function(event) {
+    var clicked_image = $(this).find('img');
+    var image_src = clicked_image.attr('data-large-version');
+    var new_image = $('<img src="' + image_src +'">');
+    // var new_image = new Image();
+    // new_image.src = $(this).attr('data-large-version');
+    new_image.hide();
+
+    $('#gallery-photo img').fadeOut(1000, function() {
+      $(this).remove();
     });
-  }
-  document.querySelector('div.gallery-element > img').click();
-});
+    $('#gallery-photo').prepend(new_image);
+    new_image.fadeIn(1000);
+
+    $('.current').removeClass('current');
+    clicked_image.addClass('current');
 
 
-// $(document).ready(function() {
+    // if (!$(this).hasClass('current')) {
+    // }
 
-//   $('#gallery-thumbs img').click(function(event) {
-//     //get path to new image
-//     var imgPath = $(this).attr('href');
 //     //get reference to old image
 //     var oldImage = $('#gallery-photo img');
 
@@ -48,21 +65,9 @@ document.addEventListener("DOMContentLoaded", function() {
 //     //fade in new image
 //     var fade_time = 1000;
 
-//     $('#gallery-info h3').html($(this).find('.photo-title').html() || 'No Title');
-//     $('#gallery-info p').html($(this).find('.photo-desc').html() || 'No Description');
+    $('#gallery-info h3').html($(this).find('.photo-title').html());
+    $('#gallery-info p').html($(this).find('.photo-desc').html());
+  }); // end click
 
-//     if(!$(this).hasClass('current')) {
-//       $('.current').removeClass('current')
-//       $(this).addClass('current');
-//     }
-
-//      //fade out old image and remove from DOM
-//      oldImage.fadeOut(fade_time, function(){
-//        $(this).remove();
-//       });
-
-//      newImage.fadeIn(fade_time);
-//   }); // end click
-
-//   $('#gallery-thumbs a:first').click();
-// }); // end ready
+  $('#gallery-thumbs img:first').click();
+}); // end ready
